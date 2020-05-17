@@ -12,7 +12,7 @@ def get_all_sql():
             if i == 0:
                 continue
             users_obj.append(
-                f'INSERT INTO users (id, name, password_hash) VALUES ({row[0]}, "{row[1]}", "{row[2]}")'
+                f"INSERT INTO users (id, name, password_hash) VALUES ({row[0]}, '{row[1]}', '{row[2]}')"
             )
     all_objects.extend(users_obj)
 
@@ -23,7 +23,7 @@ def get_all_sql():
             if i == 0:
                 continue
             stores_obj.append(
-                f'INSERT INTO stores (id, name, address, password_hash) VALUES ({row[0]}, "{row[1]}", "{row[2]}", "{row[3]}")'
+                f"INSERT INTO stores (id, name, address, password_hash) VALUES ({row[0]}, '{row[1]}', '{row[2]}', '{row[3]}')"
             )
     all_objects.extend(stores_obj)
 
