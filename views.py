@@ -133,7 +133,7 @@ def get_users(user_id):
 
 @app.route('/purchases/<int:purchase_id>/', methods=['GET'])
 @jwt_required
-def get_purchase_user(purchase_id):
+def get_one_purchase_user(purchase_id):
     identity_role, identity_id = get_jwt_identity().split()
     identity_id = int(identity_id)
     identity_card = Card.query.get(identity_id)
