@@ -14,7 +14,7 @@ class StoreSchema(Schema):
 
 
 class CardSchema(Schema):
-    card_id = fields.Integer(required=True)
+    id = fields.Integer(required=True)
     bonus = fields.Integer(required=True)
     level = fields.Integer(required=True)
 

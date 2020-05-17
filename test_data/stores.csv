@@ -1,0 +1,5 @@
+id,name,address,password_hash
+1,ВкусВилл1,Вавилова 86,pbkdf2:sha256:150000$KagVvEaQ$cc2ac53c6b52e87f331347963edda8552bf18003c7a3c8f387b9893b3f62aad4
+2,ВкусВилл2,Профсоюзная 15,pbkdf2:sha256:150000$Qxyuh961$804ac8fb9dbf76d0172769a39660bb789e61016c7069f0fe53fb4bff73790bff
+3,ВкусВилл3,Гарибальди 56,pbkdf2:sha256:150000$WeyRs8xs$e46fea15ff6c2001f32426ab810de7d5c1b1a2a16c29b55218653544caf359d1
+4,ВкусВилл4,Наметкина 43,pbkdf2:sha256:150000$f95bmzhX$94a5c903d85ed66c4c3ea2e3e6ebe761f96a774bba79111617c7db61aff01655
