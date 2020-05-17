@@ -131,4 +131,5 @@ dmypy.json
 #custom
 my_log.md
 test.db
-/insertestdat_.py
+/*insertestdat_.py
+/*insertestda2_.py

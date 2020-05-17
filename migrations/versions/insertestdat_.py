@@ -1,10 +1,9 @@
 import csv
 
-from app import db
-from models import User, Store, Card
+from alembic import op
 
 
-def insert_test_data():
+def get_all_sql():
     all_objects = []
     with open('test_data/users.csv', encoding='utf8') as user_file:
         users = csv.reader(user_file, delimiter=',')
@@ -12,7 +11,9 @@ def insert_test_data():
         for i, row in enumerate(users):
             if i == 0:
                 continue
-            users_obj.append(User(id=int(row[0]), name=row[1], password_hash=row[2]))
+            users_obj.append(
+                f'INSERT INTO users (id, name, password_hash) VALUES ({row[0]}, "{row[1]}", "{row[2]}")'
+            )
     all_objects.extend(users_obj)
 
     with open('test_data/stores.csv', encoding='utf8') as stores_file:
@@ -21,7 +22,9 @@ def insert_test_data():
         for i, row in enumerate(stores):
             if i == 0:
                 continue
-            stores_obj.append(Store(id=int(row[0]), name=row[1], address=row[2], password_hash=row[3]))
+            stores_obj.append(
+                f'INSERT INTO stores (id, name, address, password_hash) VALUES ({row[0]}, "{row[1]}", "{row[2]}", "{row[3]}")'
+            )
     all_objects.extend(stores_obj)
 
     with open('test_data/cards.csv', encoding='utf8') as cards_file:
@@ -30,11 +33,11 @@ def insert_test_data():
         for i, row in enumerate(cards):
             if i == 0:
                 continue
-            cards_obj.append(Card(id=int(row[0]), bonus=int(row[1]), level=int(row[2]), user_id=int(row[3])))
+            cards_obj.append(
+                f'INSERT INTO cards (id, bonus, level, user_id) VALUES ({row[0]}, {row[1]}, {row[2]}, {row[3]})'
+            )
     all_objects.extend(cards_obj)
-
-    db.session.add_all(all_objects)
-    db.session.commit()
+    return all_objects
 
 
 revision = 'insertestdat'
@@ -44,7 +47,8 @@ depends_on = None
 
 
 def upgrade():
-    insert_test_data()
+    for sql in get_all_sql():
+        op.execute(sql)
 
 
 def downgrade():
