@@ -208,9 +208,10 @@ def post_purchase_store():
         card.bonus = card.bonus - bonus_spent
         bonus_earned = int(purchase_sum * LEVEL_BONUS_PERCENT[card.level][1])
         card.bonus += bonus_earned
-        card_full_sum = sum([purchase.sum for purchase in card.purchases])
+        card_full_sum = sum([purchase.sum for purchase in card.purchases]) + purchase_sum
         while card_full_sum > LEVEL_BONUS_PERCENT[card.level][0]:
             card.level += 1
+        db.session.flush()
         purchase = Purchase(
             sum=purchase_sum,
             date=datetime.datetime.now(),
@@ -219,7 +220,7 @@ def post_purchase_store():
             card_id=card.id,
             store_id=data['store']
         )
-        db.session.add_all([card, purchase])
+        db.session.add(purchase)
         db.session.commit()
     except KeyError:
         ans_dict['error'] = 'invalid data'
